@@ -14,17 +14,18 @@ CSV_PATH="./output.csv"
 # Null Check Param
 if [ -z $3 ] ; then
   echo "ERROR : Not enough parameters"
+  echo "Have to parameters (Process Name, Interval(sec) and Until(min)"
   exit 1
 else
   PROCESS_NAME=$1
-  SLEEP_TIME=$2
-  END_TIME=$3
+  INTERVAL=$2
+  UNTIL=$3
 fi
 
 echo "===== Scouter Start !! ====="
-echo "PROCESS NAME is " $PROCESS_NAME " each " $SLEEP_TIME "second, during " $END_TIME "minute"
+echo "PROCESS NAME is " $PROCESS_NAME " each " $INTERVAL "second, during " $UNTIL "minute"
 
-while [[ "$COUNTER" -lt "$((END_TIME*60))" ]]
+while [[ "$COUNTER" -lt "$((UNTIL*60))" ]]
 do
   PROCESS_ID=$(pgrep $PROCESS_NAME)
 
@@ -36,8 +37,8 @@ do
 
   if [ -z $COUNTER ]
   then
-    echo "This is first time.. sleep $SLEEP_TIME(s)"
-    sleep $SLEEP_TIME
+    echo "This is first time.. sleep $INTERVAL(s)"
+    sleep $INTERVAL
   fi
 
   CPU=$(ps $PROCESS_ID -o %cpu | tail -1)
@@ -49,7 +50,7 @@ do
   echo "$(date)" "\t" "$PROCESS_NAME[$PROCESS_ID]" "\t" "$CPU" "\t" "$MEM" >> $CSV_PATH
 
 
-  sleep $SLEEP_TIME
-  COUNTER=$((COUNTER + SLEEP_TIME))
-  echo $COUNTER "/" $((END_TIME*60)) "sec"
+  sleep $INTERVAL
+  COUNTER=$((COUNTER + INTERVAL))
+  echo $COUNTER "/" $((UNTIL*60)) "sec"
 done
