@@ -12,5 +12,6 @@ Of course, if you're a developer, you might laugh at this. But if you're a Quali
 <br/>
 
 ## How to use
-'''bash
-> ./mac_scouter.sh "Google Chrome" 30 10
+```
+./mac_scouter.sh "Google Chrome" 30 10
+```
