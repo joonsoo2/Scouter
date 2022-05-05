@@ -14,7 +14,7 @@ CSV_PATH="./output.csv"
 # Null Check Param
 if [ -z $3 ] ; then
   echo "ERROR : Not enough parameters"
-  echo "Have to parameters (Process Name, Interval(sec) and Until(min)"
+  echo "Have to parameters : Process Name, Interval(sec) and Until(min)"
   exit 1
 else
   PROCESS_NAME=$1
