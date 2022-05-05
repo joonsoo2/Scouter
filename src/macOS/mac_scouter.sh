@@ -4,7 +4,7 @@
 # @project Scouter
 # @author Joonsoo
 #
-# param $1 (Process Name) $2 (Sleep Time : sec) $3 (End Time : min)
+# param $1 (Process Name) $2 (Interval : sec) $3 (Until : min)
 
 # shellcheck disable=SC2034,SC1087,SC2086,SC2028,SC2039,SC1073,SC1009,SC1061
 # Static Values
